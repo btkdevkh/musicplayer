@@ -1,16 +1,15 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { getAllSongs } from '../api/songs';
-import { config } from '../config';
 import { usePrevious } from '../utils/usePrevious';
+import useCollection from '../utils/useCollection';
 
 const Player = () => {
 
-  const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState(null);
   const [idx, setIdx] = useState(0);
   const [isPlay, setIsPlay] = useState(false);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setSuffle] = useState(false);
-  const [vol, setVol] = useState(true);
+  const { error, documents } = useCollection('playlists');
 
   const prevIdx = usePrevious(idx);
 
@@ -33,29 +32,16 @@ const Player = () => {
 
     const barInProgress = myRefBarIPro.current;
 
-    barInProgress.style.backgroundColor = "palevioletred";
+    barInProgress.style.backgroundColor = "#61dafb";
     barInProgress.style.width = `${progressPercent}%`;
   }
 
   const loadSong = () => {
-    getAllSongs()
-    .then(res => {
-      setSongs(res);
-      myRefAudio.current.addEventListener('timeupdate', updateProgressBar);
-    })
-    .catch(err => err);
+    setSongs(documents)
   }
 
   const shuffleMode = () => {
     setIdx(Math.floor(Math.random() * songs.length));
-  }
-
-  const setVolume = () => {
-    setVol(o => !o)
-  }
-  
-  const updateVoluume = () => {
-    console.log(123);
   }
 
   const play = () => {
@@ -89,30 +75,32 @@ const Player = () => {
   }
 
   useEffect(() => {
-    songs.length === 0 && loadSong();
-    songs.length && prevIdx !== idx && play();
+    songs === null && loadSong();
+    songs && myRefAudio.current.addEventListener('timeupdate', updateProgressBar);
+    songs && prevIdx !== idx && play();
 
-    const volumeAudio = myRefAudio.current
-    if(volumeAudio) {
-      //vol ? volumeAudio.volume = 1 : volumeAudio.volume = 0;
-    };
+    isPlay ? 
+    document.querySelectorAll('.fa-react').forEach(i => i.classList.add('play')) :
+    document.querySelectorAll('.fa-react').forEach(i => i.classList.remove('play'));
+
     // eslint-disable-next-line
-  }, [prevIdx, isPlay, idx, songs, repeat, shuffle, vol])
+  }, [prevIdx, isPlay, idx, songs, repeat, shuffle])
 
   return (
     <div className="music-container">
+      {error && <h3>{error}</h3>}
       <div className={ isPlay === false ? "music-info" : "music-info play" }>
         {
-          songs.length &&
+          songs &&
           <Fragment>
             <h3 className="title">{songs[idx].title}</h3>
             <h5 className="title">{songs[idx].singer}</h5>
 
             <div className="cover">
-              <img src={`${config.api_pict}/${songs[idx].photo}`} alt="album-cover" />
+              <img src={songs[idx].coverUrl} alt="album-cover" />
             </div>
             
-            <audio ref={myRefAudio} src={`${config.api_music}/${songs[idx].songName}`} onEnded={shuffle === false ? next : shuffleMode} loop={repeat}></audio>
+            <audio ref={myRefAudio} src={songs[idx].songUrl} onEnded={shuffle === false ? next : shuffleMode} loop={repeat}></audio>
           </Fragment>
         }
       </div>
@@ -133,10 +121,6 @@ const Player = () => {
         </button>
         <button disabled={isPlay === false ? true : false} onClick={() => setSuffle(o => !o)}>
           <i className={shuffle === false ? 'fas fa-random' : 'fas fa-random shuffle'}></i>
-        </button>
-
-        <button className="vol" disabled={isPlay === false ? true : false} onClick={() => setVolume()}>
-          <i className={'fas fa-volume-up'}></i> <span onClick={updateVoluume} className={'volBar'}></span>
         </button>
       </div>
 

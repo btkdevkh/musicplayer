@@ -33,16 +33,32 @@ select,
 a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+.App {
+  overflow-x: hidden;
+}
 
 /* Principal header */
 header {
   text-align: center;
   padding: 10px;
   background-color: #20232a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+header i {
+  margin: 0 10px;
+}
+.fa-react,
 .fa-headphones-alt {
   font-size: 48px;
-  color: goldenrod;
+  color: #61dafb;
+}
+.fa-react {
+  font-size: 1.3rem;
+}
+.fa-react.play {
+  animation: spin 5s linear infinite;
 }
 
 /* Main bg */
@@ -135,14 +151,14 @@ header {
 }
 .progress-bar.play {
   width: 200px;
-  height: 5px;
+  height: 6px;
   margin: auto;
   border-radius: 3px;
   background-color: var(--secnd-color);
   cursor: pointer;
 }
 .bar-in-progress.play {
-  height: 5px;
+  height: 6px;
   border-radius: 3px;
 }
 .title {
@@ -172,7 +188,7 @@ header {
   width: 36px;
   height: 4px;
   border-radius: 3px;
-  background: palevioletred;
+  background: #61dafb;
   cursor: pointer;
 }
 /* .vol .volBar.active {
@@ -188,7 +204,7 @@ header {
 }
 .repeat .fa-redo.repeat,
 .repeat .fa-random.shuffle {
-  color: palevioletred;
+  color: #61dafb;
 }
 .fa-backward,
 .fa-forward,
@@ -209,11 +225,14 @@ footer div p {
   text-align: center;
 }
 footer hr {
-  width: 100px;
+  width: 165px;
   height: 2px;
-  background-color: goldenrod;
+  background-color: #61dafb;
   margin: auto;
   border: none;
+}
+footer i {
+  margin: 0 10px;
 }
 
 @keyframes spin {

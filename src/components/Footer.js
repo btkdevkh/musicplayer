@@ -2,11 +2,11 @@ const Footer = () => {
   return (
     <footer>
       <div>
-        <p>Hi, I'm your music player</p>
+        <p>Btkdevkh Music Player</p>
         <hr />
-        <p><small>😎 Hit play & Relax 😎</small></p>
-        <p style={{marginTop: "10px"}}><small>App Version 1.0.1</small></p>
-        <p><small>Thanks, <a style={{color: "goldenrod"}} href="https://btkdevkh.com" target="_blank" rel="noreferrer">Btkdevkh</a></small></p>
+        <p><small><i className="fab fa-react"></i> Hit play & Relax <i className="fab fa-react"></i></small></p>
+        <p style={{marginTop: "10px"}}><small>App Version 1.0.2</small></p>
+        <p><small>Thanks, <a style={{color: "#61dafb"}} href="https://btkdevkh.netlify.app/" target="_blank" rel="noreferrer">Btkdevkh</a></small></p>
       </div>
     </footer>
   )
