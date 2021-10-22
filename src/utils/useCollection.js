@@ -20,6 +20,7 @@ const useCollection = (collectionName) => {
       
       // update values
       setDocuments(results);
+      documents.sort((a, b) => b.createdAt - a.createdAt);
       setError(null);
     }, err => {
       console.log(err.message);
