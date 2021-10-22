@@ -19,8 +19,8 @@ const useCollection = (collectionName) => {
       });
       
       // update values
+      results.sort((a, b) => b.createdAt - a.createdAt);
       setDocuments(results);
-      documents.sort((a, b) => b.createdAt - a.createdAt);
       setError(null);
     }, err => {
       console.log(err.message);
