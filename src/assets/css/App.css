@@ -49,10 +49,9 @@ header {
 header i {
   margin: 0 10px;
 }
-.fa-react,
 .fa-headphones-alt {
-  font-size: 48px;
-  color: #61dafb;
+  font-size: 45px;
+  color: rgb(214,215,217);
 }
 .fa-react {
   font-size: 1.3rem;
@@ -70,18 +69,21 @@ header i {
   justify-content: center;
   align-items: center;
 }
-.music-container, .music-fake {
+.music-container {
   min-width: 315px;
   width: 100%;
   max-width: 400px;
   height: 597px;
   padding: 30px 15px;
-  margin: 2px;
+  margin: 0px;
   position: relative;
-  /* border-radius: 3px;
+  /* border-radius: 3px; */
   background-color: rgba(255, 255, 255, .15);
   backdrop-filter: blur(5px);
-  box-shadow: inset 0 0 5px rgba(0,0,0,.5); */
+  /* box-shadow: inset 0 0 5px rgba(0,0,0,.5); */
+}
+.music-fake {
+  margin: 0 55px;
 }
 .music-fake {
   display: none;
@@ -216,7 +218,7 @@ header i {
 footer {
   padding: 25px;
   text-align: justify;
-  color: var(--secnd-color);
+  color: rgb(214,215,217);
   background-color: #20232a;
   font-size: 1.1rem;
 }
