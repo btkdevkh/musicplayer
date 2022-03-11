@@ -6,13 +6,15 @@ import './assets/css/App.css';
 
 const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-      </Switch>
+    <>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
