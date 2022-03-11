@@ -117,12 +117,12 @@ header i {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: #111;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(214,215,217);
   border-radius: 50%;
   z-index: 1;
-  border: 3px solid var(--secnd-color);
+  border: 3px solid rgba(0,0,0,.5);;
 }
 .cover img,
 .music-fake .cover img {
