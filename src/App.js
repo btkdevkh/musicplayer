@@ -7,8 +7,8 @@ import './assets/css/App.css';
 const App = () => {
   return (
     <>
+      <Header />
       <div className="App">
-        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
         </Switch>
