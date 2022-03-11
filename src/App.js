@@ -7,13 +7,13 @@ import './assets/css/App.css';
 const App = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
         </Switch>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
