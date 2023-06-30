@@ -1,8 +1,8 @@
-import Player from './Player';
-import cambodia from '../assets/img/cambodia.png';
-import france from '../assets/img/france.png';
+import Player from "../components/Player"
+import cambodia from "../assets/img/cambodia.png"
+import france from "../assets/img/france.png"
 
-const Main = () => {
+const Home = () => {
   return (
     <main className="main-bg">
       <div className="music-fake">
@@ -14,7 +14,7 @@ const Main = () => {
       </div>
 
       <Player />
-      
+
       <div className="music-fake">
         <div className="music-info play">
           <div className="cover">
@@ -26,4 +26,4 @@ const Main = () => {
   )
 }
 
-export default Main;
+export default Home
