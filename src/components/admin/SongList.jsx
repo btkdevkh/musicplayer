@@ -1,4 +1,4 @@
-import useCollection from "../hooks/useCollection"
+import useCollection from "../../hooks/useCollection"
 import SongItem from "./SongItem"
 
 const SongList = () => {
@@ -8,7 +8,7 @@ const SongList = () => {
     <div
       className="song-list"
       style={{
-        height: "500px",
+        height: "100vh",
         overflowY: "auto",
       }}
     >

@@ -31,11 +31,10 @@ const formData = [
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <Form headingTitle={"CREATE SONG"} formData={formData} />
-
-      <br />
+      <h1>Admin Dashboard</h1>
 
       <SongList />
+      <Form headingTitle={"CREATE SONG"} formData={formData} />
     </div>
   )
 }

@@ -17,8 +17,6 @@ html {
 body {
   min-width: 320px;
   font-size: 1.3em;
-  font-weight: 300;
-  line-height: 1.4;
   font-family: "Georama", sans-serif;
   background: url("../img/bg.jpg") no-repeat center center / cover;
 }
@@ -36,28 +34,18 @@ select,
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.App {
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
-/* Principal header */
+/* header */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #fff;
   background-color: #20232a;
-}
-header i {
-  margin: 0 0.5rem;
 }
 .fa-headphones-alt {
   color: rgb(214, 215, 217);
@@ -71,26 +59,24 @@ header i {
 
 /* Main bg */
 .main-bg {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 .music-container {
-  min-width: 315px;
-  width: 100%;
-  max-width: 400px;
-  height: 597px;
-  padding: 30px 15px;
-  margin: 0px;
+  min-width: 360px;
   position: relative;
-  /* background-color: rgba(255, 255, 255, 0.15);
+  padding: 2rem 2rem 2.6rem 2rem;
   backdrop-filter: blur(5px);
-  border-radius: 3px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); */
-}
-.music-fake {
-  margin: 0 55px;
+  border-radius: 2rem;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 .music-fake {
   display: none;
@@ -100,7 +86,7 @@ header i {
 }
 .music-info h5 {
   font-weight: 300;
-  margin-bottom: 25px;
+  margin-bottom: 2rem;
 }
 .cover,
 .music-fake .cover {
@@ -120,10 +106,10 @@ header i {
   transform: translate(-50%, -50%);
   width: 25px;
   height: 25px;
-  background-color: rgb(214, 215, 217);
+  background-color: #d6d7d9;
   border-radius: 50%;
   z-index: 1;
-  border: 3px solid rgba(0, 0, 0, 0.5);
+  border: 3px solid #454648;
 }
 .cover img,
 .music-fake .cover img {
@@ -136,17 +122,15 @@ header i {
   animation: spin 5s linear infinite;
 }
 .btn-controls {
-  margin: 15px 0 0 0;
+  margin: 1rem 0 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .btn-controls button {
-  padding: 15px;
-  margin: 0 2px;
-  border: 0;
+  padding: 1rem;
+  border: none;
   cursor: pointer;
-  border-radius: 5px;
   background: none;
 }
 .btn-controls button:focus {
@@ -162,9 +146,10 @@ header i {
   width: 200px;
   height: 6px;
   margin: auto;
+  margin-top: 0.5rem;
   border-radius: 3px;
-  background-color: var(--secnd-color);
   cursor: pointer;
+  background-color: var(--secnd-color);
 }
 .bar-in-progress.play {
   height: 6px;
@@ -175,10 +160,10 @@ header i {
 }
 
 .repeat {
-  position: relative;
-  margin: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
 }
 .repeat button {
   border: none;
@@ -186,30 +171,11 @@ header i {
   cursor: pointer;
   margin: 10px 15px 20px 15px;
 }
-.vol {
-  position: relative;
-}
-.vol .volBar {
-  position: absolute;
-  top: 50%;
-  left: 24px;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 4px;
-  border-radius: 3px;
-  background: #61dafb;
-  cursor: pointer;
-}
-/* .vol .volBar.active {
-  display: inline;
-} */
-.repeat .fa-redo {
-  font-size: 18px;
-}
+.repeat .fa-redo,
 .repeat .fa-random,
 .fa-volume-up,
 .fa-volume-off {
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 .repeat .fa-redo.repeat,
 .repeat .fa-random.shuffle {
@@ -219,11 +185,12 @@ header i {
 .fa-forward,
 .fa-play,
 .fa-pause {
-  font-size: 22px;
-  padding: 10px;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
+
+/* Footer */
 footer {
-  text-align: justify;
   color: rgb(214, 215, 217);
   background-color: #20232a;
   font-size: 1.1rem;
@@ -256,25 +223,28 @@ form input[type="submit"] {
 
 /* Admin */
 .admin {
-  width: 100%;
-  text-align: center;
+  color: #fff;
   display: flex;
   align-items: center;
+  text-align: center;
+}
+.dashboard h1 {
+  padding: 1rem;
+  font-size: 1.8rem;
 }
 .admin-dashboard {
-  flex: 2;
-  min-height: 100vh;
-  padding: 1rem;
-  background-color: #61dafb;
+  flex: 3;
+  padding: 0.5rem;
+  background: url("../img/bg-admin.png") center center / cover;
 }
 .admin-player {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0.5rem;
+  color: #20232a;
 }
 .form-generic {
-  border: 1px solid #7873f5;
+  width: 100%;
+  border: 1px solid #dbdcde;
 }
 .form-generic input[type="file"] {
   opacity: 0;

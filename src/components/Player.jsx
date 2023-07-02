@@ -3,12 +3,12 @@ import { usePrevious } from "../hooks/usePrevious"
 import useCollection from "../hooks/useCollection"
 
 const Player = () => {
-  const [songs, setSongs] = useState(null)
+  const { error, documents: songsFB } = useCollection("playlists")
+
   const [idx, setIdx] = useState(0)
   const [isPlay, setIsPlay] = useState(false)
   const [repeat, setRepeat] = useState(false)
   const [shuffle, setSuffle] = useState(false)
-  const { error, documents } = useCollection("playlists")
 
   const prevIdx = usePrevious(idx)
 
@@ -35,12 +35,8 @@ const Player = () => {
     barInProgress.style.width = `${progressPercent}%`
   }
 
-  const loadSong = () => {
-    setSongs(documents)
-  }
-
   const shuffleMode = () => {
-    setIdx(Math.floor(Math.random() * songs.length))
+    setIdx(Math.floor(Math.random() * songsFB.length))
   }
 
   const play = () => {
@@ -55,7 +51,7 @@ const Player = () => {
 
   const prev = () => {
     if (idx <= 0) {
-      setIdx((o) => (o = songs.length - 1))
+      setIdx((o) => (o = songsFB.length - 1))
     } else {
       setIdx((o) => o - 1)
     }
@@ -63,7 +59,7 @@ const Player = () => {
   }
 
   const next = () => {
-    if (idx >= songs.length - 1) {
+    if (idx >= songsFB.length - 1) {
       setIdx((o) => (o = 0))
     } else {
       setIdx((o) => o + 1)
@@ -72,10 +68,9 @@ const Player = () => {
   }
 
   useEffect(() => {
-    songs === null && loadSong()
-    songs &&
+    songsFB &&
       myRefAudio.current.addEventListener("timeupdate", updateProgressBar)
-    songs && prevIdx !== idx && play()
+    songsFB && prevIdx !== idx && play()
 
     isPlay
       ? document
@@ -84,26 +79,24 @@ const Player = () => {
       : document
           .querySelectorAll(".fa-react")
           .forEach((i) => i.classList.remove("play"))
-
-    // eslint-disable-next-line
-  }, [prevIdx, isPlay, idx, songs, repeat, shuffle])
+  }, [prevIdx, isPlay, idx, songsFB, repeat])
 
   return (
     <div className="music-container">
       {error && <h3>{error}</h3>}
       <div className={isPlay === false ? "music-info" : "music-info play"}>
-        {songs && (
+        {songsFB && (
           <Fragment>
-            <h3 className="title">{songs[idx].title}</h3>
-            <h5 className="title">{songs[idx].singer}</h5>
+            <h3 className="title">{songsFB[idx].title}</h3>
+            <h5 className="title">{songsFB[idx].singer}</h5>
 
             <div className="cover">
-              <img src={songs[idx].coverUrl} alt="album-cover" />
+              <img src={songsFB[idx].coverUrl} alt="album-cover" />
             </div>
 
             <audio
               ref={myRefAudio}
-              src={songs[idx].songUrl}
+              src={songsFB[idx].songUrl}
               onEnded={shuffle === false ? next : shuffleMode}
               loop={repeat}
             ></audio>
