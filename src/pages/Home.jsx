@@ -1,8 +1,12 @@
-import Player from './Player';
-import cambodia from '../assets/img/cambodia.png';
-import france from '../assets/img/france.png';
+import Player from "../components/Player"
+import cambodia from "../assets/img/cambodia.png"
+import france from "../assets/img/france.png"
+import { useState } from "react"
 
-const Main = () => {
+const Home = () => {
+  const [index, setIndex] = useState(0)
+  const [isPlay, setIsPlay] = useState(false)
+
   return (
     <main className="main-bg">
       <div className="music-fake">
@@ -13,8 +17,13 @@ const Main = () => {
         </div>
       </div>
 
-      <Player />
-      
+      <Player
+        index={index}
+        setIndex={setIndex}
+        isPlay={isPlay}
+        setIsPlay={setIsPlay}
+      />
+
       <div className="music-fake">
         <div className="music-info play">
           <div className="cover">
@@ -26,4 +35,4 @@ const Main = () => {
   )
 }
 
-export default Main;
+export default Home
