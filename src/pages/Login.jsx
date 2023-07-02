@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import useLogin from "../hooks/useLogin"
 
 const Login = () => {
@@ -28,9 +29,13 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="main-bg">
       <form onSubmit={handleSubmit}>
-        <h4>Login</h4>
+        <h4>
+          <i className="fas fa-guitar fa-lg"></i>{" "}
+          <i className="fas fa-user-circle fa-lg"></i>
+        </h4>
+        <br />
         <input
           type="email"
           name="email"
@@ -45,10 +50,19 @@ const Login = () => {
           value={dataInput.password}
           onChange={handleChange}
         />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="SUBMIT" />
 
         <br />
         {error && error}
+
+        <Link
+          to={"/"}
+          style={{
+            color: "#20232a",
+          }}
+        >
+          <i className="fas fa-home"></i>
+        </Link>
       </form>
     </div>
   )

@@ -83,6 +83,7 @@ const Form = ({ headingTitle, formData }) => {
       onSubmit={onSubmit}
       encType="multipart/form-data"
     >
+      <hr />
       <h5>{headingTitle}</h5>
       <hr />
       {formData.length > 0 &&
@@ -108,7 +109,7 @@ const Form = ({ headingTitle, formData }) => {
           </div>
         ))}
 
-      <input type="submit" value="Submit" />
+      <input type="submit" value="SUBMIT" />
     </form>
   )
 }

@@ -1,16 +1,11 @@
-import { Fragment, useEffect, useRef, useState } from "react"
-import { usePrevious } from "../hooks/usePrevious"
+import { Fragment, useCallback, useEffect, useRef, useState } from "react"
 import useCollection from "../hooks/useCollection"
 
-const Player = () => {
+const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
   const { error, documents: songsFB } = useCollection("playlists")
 
-  const [idx, setIdx] = useState(0)
-  const [isPlay, setIsPlay] = useState(false)
   const [repeat, setRepeat] = useState(false)
   const [shuffle, setSuffle] = useState(false)
-
-  const prevIdx = usePrevious(idx)
 
   const myRefAudio = useRef()
   const myRefBarIPro = useRef()
@@ -31,18 +26,20 @@ const Player = () => {
 
     const barInProgress = myRefBarIPro.current
 
-    barInProgress.style.backgroundColor = "#61dafb"
-    barInProgress.style.width = `${progressPercent}%`
+    if (barInProgress) {
+      barInProgress.style.backgroundColor = "#61dafb"
+      barInProgress.style.width = `${progressPercent}%`
+    }
   }
 
   const shuffleMode = () => {
-    setIdx(Math.floor(Math.random() * songsFB.length))
+    if (songsFB) setIndex(Math.floor(Math.random() * songsFB.length))
   }
 
-  const play = () => {
+  const play = useCallback(() => {
     setIsPlay(true)
     myRefAudio.current.play().catch((error) => error)
-  }
+  }, [setIsPlay])
 
   const pause = () => {
     setIsPlay(false)
@@ -50,27 +47,31 @@ const Player = () => {
   }
 
   const prev = () => {
-    if (idx <= 0) {
-      setIdx((o) => (o = songsFB.length - 1))
-    } else {
-      setIdx((o) => o - 1)
+    if (songsFB) {
+      if (index <= 0) {
+        setIndex((o) => (o = songsFB.length - 1))
+      } else {
+        setIndex((o) => o - 1)
+      }
+      play()
     }
-    play()
   }
 
   const next = () => {
-    if (idx >= songsFB.length - 1) {
-      setIdx((o) => (o = 0))
-    } else {
-      setIdx((o) => o + 1)
+    if (songsFB) {
+      if (index >= songsFB.length - 1) {
+        setIndex((o) => (o = 0))
+      } else {
+        setIndex((o) => o + 1)
+      }
+      play()
     }
-    play()
   }
 
   useEffect(() => {
+    songsFB && isPlay && play()
     songsFB &&
       myRefAudio.current.addEventListener("timeupdate", updateProgressBar)
-    songsFB && prevIdx !== idx && play()
 
     isPlay
       ? document
@@ -79,7 +80,7 @@ const Player = () => {
       : document
           .querySelectorAll(".fa-react")
           .forEach((i) => i.classList.remove("play"))
-  }, [prevIdx, isPlay, idx, songsFB, repeat])
+  }, [isPlay, index, songsFB, repeat, play])
 
   return (
     <div className="music-container">
@@ -87,16 +88,16 @@ const Player = () => {
       <div className={isPlay === false ? "music-info" : "music-info play"}>
         {songsFB && (
           <Fragment>
-            <h3 className="title">{songsFB[idx].title}</h3>
-            <h5 className="title">{songsFB[idx].singer}</h5>
+            <h3 className="title">{songsFB[index].title}</h3>
+            <h5 className="title">{songsFB[index].singer}</h5>
 
             <div className="cover">
-              <img src={songsFB[idx].coverUrl} alt="album-cover" />
+              <img src={songsFB[index].coverUrl} alt="album-cover" />
             </div>
 
             <audio
               ref={myRefAudio}
-              src={songsFB[idx].songUrl}
+              src={songsFB[index].songUrl}
               onEnded={shuffle === false ? next : shuffleMode}
               loop={repeat}
             ></audio>

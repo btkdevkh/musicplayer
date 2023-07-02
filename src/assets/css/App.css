@@ -15,6 +15,7 @@ html {
   overflow-x: hidden;
 }
 body {
+  min-height: 100vh;
   min-width: 320px;
   font-size: 1.3em;
   font-family: "Georama", sans-serif;
@@ -202,7 +203,7 @@ footer div p {
 
 /* Login */
 form {
-  width: 320px;
+  width: 420px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -212,21 +213,22 @@ form {
 }
 form input {
   width: 100%;
-  padding: 0.5rem;
+  padding: 1rem;
   border: none;
 }
 form input[type="submit"] {
   font-family: inherit;
   cursor: pointer;
   font-weight: 700;
+  color: #fff;
+  background-color: #7873f5;
 }
 
 /* Admin */
 .admin {
-  color: #fff;
   display: flex;
-  align-items: center;
   text-align: center;
+  align-items: center;
 }
 .dashboard h1 {
   padding: 1rem;
@@ -235,16 +237,21 @@ form input[type="submit"] {
 .admin-dashboard {
   flex: 3;
   padding: 0.5rem;
-  background: url("../img/bg-admin.png") center center / cover;
+  background: url("../img/bg.jpg") no-repeat right center / cover;
 }
 .admin-player {
   flex: 1;
   padding: 0.5rem;
   color: #20232a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 .form-generic {
   width: 100%;
-  border: 1px solid #dbdcde;
+  border-radius: 2rem;
+  border: 1px solid #c7c8c9;
 }
 .form-generic input[type="file"] {
   opacity: 0;
@@ -254,7 +261,7 @@ form input[type="submit"] {
 }
 .form-generic label {
   font-size: 0.8rem;
-  padding: 0.5rem;
+  padding: 1rem;
   display: block;
   position: relative;
   width: 100%;
@@ -268,21 +275,35 @@ form input[type="submit"] {
   cursor: pointer;
   transition: transform 0.2s ease-out;
 }
+.form-generic input[type="submit"] {
+  color: #d6d7d9;
+  background-color: #7873f5;
+}
+
+/* Song list */
+.song-list {
+  height: 100vh;
+  overflow-y: auto;
+}
 
 table {
   width: 100%;
 }
 thead {
-  font-size: 1rem;
-  font-weight: 500;
   position: sticky;
   top: 0;
   background: linear-gradient(40deg, #ff6ec4, #7873f5);
 }
-td {
+thead td {
   font-size: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #fff;
+  font-weight: 600;
+  padding: 0.8rem;
+  border: none;
+}
+tbody td {
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #c7c8c9;
 }
 
 @keyframes spin {
