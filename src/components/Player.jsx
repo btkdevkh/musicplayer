@@ -27,7 +27,7 @@ const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
     const barInProgress = myRefBarIPro.current
 
     if (barInProgress) {
-      barInProgress.style.backgroundColor = "#61dafb"
+      barInProgress.style.backgroundColor = "#06c270"
       barInProgress.style.width = `${progressPercent}%`
     }
   }
