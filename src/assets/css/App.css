@@ -107,7 +107,7 @@ header {
   transform: translate(-50%, -50%);
   width: 25px;
   height: 25px;
-  background-color: #d6d7d9;
+  background-color: #000;
   border-radius: 50%;
   z-index: 1;
   border: 3px solid #454648;
