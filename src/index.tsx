@@ -1,3 +1,4 @@
+import "./assets/css/App.css";
 import App from "./App";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
