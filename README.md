@@ -1,9 +1,9 @@
-# Music Player Implementing with Firebase Storage
+# Glass Music Player Serverless implementing with Firebase Storage
 
-### npm install
+### npm i
 
 - Create `.env.local`
 - Please refer to the `config` file in the `firebase` folder
-- Declare your env variables in it, all of them must start with the prefix `REACT_APP`
+- Declare your env variables in it, all of them must start with the prefix `VITE_`
 
-Thanks !
+Enjoy & Thanks !

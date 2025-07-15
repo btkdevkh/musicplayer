@@ -1,14 +1,13 @@
-import "./assets/css/App.css"
-import { Switch, Route, Redirect } from "react-router-dom"
-import Home from "./pages/Home"
-import Admin from "./pages/Admin"
-import Login from "./pages/Login"
-import useAuthContext from "./hooks/useAuthContext"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import useAuthContext from "./hooks/useAuthContext";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 const App = () => {
-  const { user, authIsReady } = useAuthContext()
+  const { user, authIsReady } = useAuthContext();
 
   return (
     <>
@@ -28,7 +27,7 @@ const App = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
