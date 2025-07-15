@@ -1,77 +1,93 @@
-import { Fragment, useCallback, useEffect, useRef, useState } from "react"
-import useCollection from "../hooks/useCollection"
+import useCollection from "../hooks/useCollection";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 
-const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
-  const { error, documents: songsFB } = useCollection("playlists")
+type PlayerProps = {
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+  isPlay: boolean;
+  setIsPlay: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-  const [repeat, setRepeat] = useState(false)
-  const [shuffle, setSuffle] = useState(false)
+const Player = ({ index, setIndex, isPlay, setIsPlay }: PlayerProps) => {
+  const { error, documents: songsFB } = useCollection("playlists");
 
-  const myRefAudio = useRef()
-  const myRefBarIPro = useRef()
+  const [repeat, setRepeat] = useState(false);
+  const [shuffle, setSuffle] = useState(false);
 
-  const setProgress = (e) => {
-    const width = e.target.clientWidth
-    const clicktX = e.nativeEvent.offsetX
+  const myRefAudio = useRef<HTMLAudioElement | null>(null);
+  const myRefBarIPro = useRef<HTMLDivElement | null>(null);
 
-    const audio = myRefAudio.current
-    const duration = audio.duration
+  const setProgress = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const width = (e.target as HTMLDivElement).clientWidth;
+    const clicktX = e.nativeEvent.offsetX;
 
-    audio.currentTime = (clicktX / width) * duration
-  }
+    const audio = myRefAudio.current;
 
-  const updateProgressBar = (e) => {
-    const { duration, currentTime } = e.srcElement
-    const progressPercent = (currentTime / duration) * 100
+    if (audio) {
+      const duration = audio.duration;
+      audio.currentTime = (clicktX / width) * duration;
+    }
+  };
 
-    const barInProgress = myRefBarIPro.current
+  const updateProgressBar = (e: Event) => {
+    const { duration, currentTime } = e.target as HTMLAudioElement;
+    const progressPercent = (currentTime / duration) * 100;
+
+    const barInProgress = myRefBarIPro.current;
 
     if (barInProgress) {
-      barInProgress.style.backgroundColor = "#06c270"
-      barInProgress.style.width = `${progressPercent}%`
+      barInProgress.style.backgroundColor = "#06c270";
+      barInProgress.style.width = `${progressPercent}%`;
     }
-  }
+  };
 
   const shuffleMode = () => {
-    if (songsFB) setIndex(Math.floor(Math.random() * songsFB.length))
-  }
+    if (songsFB) setIndex(Math.floor(Math.random() * songsFB.length));
+  };
 
   const play = useCallback(() => {
-    setIsPlay(true)
-    myRefAudio.current.play().catch((error) => error)
-  }, [setIsPlay])
+    setIsPlay(true);
+
+    if (myRefAudio && myRefAudio.current) {
+      myRefAudio.current.play().catch((error) => error);
+    }
+  }, [setIsPlay]);
 
   const pause = () => {
-    setIsPlay(false)
-    myRefAudio.current.pause()
-  }
+    setIsPlay(false);
+
+    if (myRefAudio && myRefAudio.current) {
+      myRefAudio.current.pause();
+    }
+  };
 
   const prev = () => {
     if (songsFB) {
       if (index <= 0) {
-        setIndex((o) => (o = songsFB.length - 1))
+        setIndex((o) => (o = songsFB.length - 1));
       } else {
-        setIndex((o) => o - 1)
+        setIndex((o) => o - 1);
       }
-      play()
+      play();
     }
-  }
+  };
 
   const next = () => {
     if (songsFB) {
       if (index >= songsFB.length - 1) {
-        setIndex((o) => (o = 0))
+        setIndex((o) => (o = 0));
       } else {
-        setIndex((o) => o + 1)
+        setIndex((o) => o + 1);
       }
-      play()
+      play();
     }
-  }
+  };
 
   useEffect(() => {
-    songsFB && isPlay && play()
+    songsFB && isPlay && play();
     songsFB &&
-      myRefAudio.current.addEventListener("timeupdate", updateProgressBar)
+      myRefAudio.current &&
+      myRefAudio.current.addEventListener("timeupdate", updateProgressBar);
 
     isPlay
       ? document
@@ -79,8 +95,8 @@ const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
           .forEach((i) => i.classList.add("play"))
       : document
           .querySelectorAll(".fa-react")
-          .forEach((i) => i.classList.remove("play"))
-  }, [isPlay, index, songsFB, repeat, play])
+          .forEach((i) => i.classList.remove("play"));
+  }, [isPlay, index, songsFB, repeat, play]);
 
   return (
     <div className="music-container">
@@ -111,7 +127,7 @@ const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
         </button>
         <button
           onClick={() => {
-            isPlay ? pause() : play()
+            isPlay ? pause() : play();
           }}
         >
           <i
@@ -149,7 +165,7 @@ const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
       <div
         className={isPlay === false ? "progress-bar" : "progress-bar play"}
         onClick={(e) => {
-          setProgress(e)
+          setProgress(e);
         }}
       >
         <div
@@ -160,7 +176,7 @@ const Player = ({ index, setIndex, isPlay, setIsPlay }) => {
         ></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Player
+export default Player;

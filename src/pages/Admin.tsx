@@ -1,11 +1,11 @@
-import { useState } from "react"
-import Player from "../components/Player"
-import Dashboard from "../components/admin/Dashboard"
-import Form from "../components/admin/Form"
+import { useState } from "react";
+import Player from "../components/Player";
+import Dashboard from "../components/admin/Dashboard";
+import Form from "../components/admin/Form";
 
 const Admin = () => {
-  const [index, setIndex] = useState(0)
-  const [isPlay, setIsPlay] = useState(false)
+  const [index, setIndex] = useState(0);
+  const [isPlay, setIsPlay] = useState(false);
 
   return (
     <>
@@ -30,10 +30,10 @@ const Admin = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;
 
 const formData = [
   {
@@ -60,4 +60,4 @@ const formData = [
     name: "song",
     placeholder: "",
   },
-]
+];

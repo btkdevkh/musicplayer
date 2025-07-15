@@ -1,8 +1,15 @@
-import useCollection from "../../hooks/useCollection"
-import SongItem from "./SongItem"
+import SongItem from "./SongItem";
+import useCollection from "../../hooks/useCollection";
 
-const SongList = ({ index, setIndex, isPlay, setIsPlay }) => {
-  const { documents: songsFB } = useCollection("playlists")
+type SongListProps = {
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+  isPlay: boolean;
+  setIsPlay: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SongList = ({ index, setIndex, isPlay, setIsPlay }: SongListProps) => {
+  const { documents: songsFB } = useCollection("playlists");
 
   return (
     <div className="song-list">
@@ -32,7 +39,7 @@ const SongList = ({ index, setIndex, isPlay, setIsPlay }) => {
         </table>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SongList
+export default SongList;
