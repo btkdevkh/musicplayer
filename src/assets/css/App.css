@@ -41,12 +41,12 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0.4rem;
+  padding: 0.5rem;
+  color: #20232a;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
-  background-color: #20232a;
+  gap: 0.5rem;
 }
 .fa-headphones-alt {
   color: rgb(214, 215, 217);
@@ -60,10 +60,7 @@ header {
 
 /* Main bg */
 .main-bg {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 90vh;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -192,13 +189,13 @@ header {
 
 /* Footer */
 footer {
-  color: rgb(214, 215, 217);
-  background-color: #20232a;
+  color: #20232a;
   font-size: 1.1rem;
 }
 footer div p {
   padding: 0.3rem 0;
   text-align: center;
+  font-weight: 700;
 }
 
 /* Login */
@@ -239,11 +236,13 @@ form input[type="submit"] {
   background: url("../img/bg.jpg") no-repeat right center / cover;
 }
 .admin-player {
+  height: 92vh;
   flex: 1;
   padding: 0.5rem;
   color: #20232a;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   gap: 0.5rem;
 }
@@ -251,6 +250,10 @@ form input[type="submit"] {
   width: 100%;
   border-radius: 2rem;
   border: 1px solid #c7c8c9;
+}
+.form-generic input {
+  border-radius: 1rem;
+  font-family: inherit;
 }
 .form-generic input[type="file"] {
   opacity: 0;
@@ -273,18 +276,19 @@ form input[type="submit"] {
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease-out;
+  border-radius: 1rem;
 }
 .form-generic input[type="submit"] {
   color: #d6d7d9;
+  font-weight: 700;
   background-color: #7873f5;
 }
 
 /* Song list */
 .song-list {
-  height: 100vh;
+  height: 90vh;
   overflow-y: auto;
 }
-
 table {
   width: 100%;
 }
@@ -298,23 +302,18 @@ thead td {
   font-weight: 600;
   padding: 0.8rem;
   border: none;
+  border-radius: 0.3rem;
+  color: #fff;
 }
 tbody td {
   font-size: 1rem;
-  padding: 0.2rem 0.5rem;
   border: 1px solid #c7c8c9;
+  border-radius: 1rem;
 }
 
 @keyframes spin {
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@media screen and (min-width: 500px) {
-  footer div {
-    max-width: 500px;
-    margin: auto;
   }
 }
 

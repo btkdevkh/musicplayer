@@ -94,9 +94,7 @@ const Form = ({ headingTitle, formData }: FormProps) => {
       onSubmit={onSubmit}
       encType="multipart/form-data"
     >
-      <hr />
       <h5>{headingTitle}</h5>
-      <hr />
       {formData.length > 0 &&
         formData.map((fd, i) => (
           <div key={fd.id}>

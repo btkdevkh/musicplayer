@@ -1,11 +1,11 @@
-import useAuthContext from "../hooks/useAuthContext"
-import useLogout from "../hooks/useLogout"
-import { useHistory } from "react-router-dom"
+import useAuthContext from "../hooks/useAuthContext";
+import useLogout from "../hooks/useLogout";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
-  const { user } = useAuthContext()
-  const { logout } = useLogout()
-  const history = useHistory()
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
+  const history = useHistory();
 
   return (
     <header>
@@ -13,12 +13,12 @@ const Header = () => {
         <i
           onClick={() => history.push("/")}
           style={{ cursor: "pointer" }}
-          className="fas fa-headphones-alt"
+          className="fas fa-home fa-xs"
         ></i>
         <i
           onClick={() => history.push("/admin")}
           style={{ cursor: "pointer" }}
-          className="fas fa-tools fa-xs"
+          className="fas fa-user-shield fa-xs"
         ></i>
       </div>
       <div
@@ -30,17 +30,16 @@ const Header = () => {
         <h6>{user.email}</h6>
         <button
           style={{
-            backgroundColor: "#20232a",
             border: "none",
             cursor: "pointer",
-            color: "#fff",
+            background: "transparent",
           }}
         >
           <i onClick={logout} className="fas fa-sign-out-alt"></i>
         </button>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
