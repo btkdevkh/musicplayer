@@ -23,7 +23,7 @@ const App = () => {
               {user ? <Redirect to="/admin" /> : <Login />}
             </Route>
           </Switch>
-          {user && <Footer />}
+          <Footer />
         </>
       )}
     </>

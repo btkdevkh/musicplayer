@@ -3,13 +3,11 @@ const Footer = () => {
     <footer>
       <div>
         <p>
-          <small>
-            App Version 1.0.4 &copy; 2021 - {new Date().getFullYear()}
-          </small>
+          <small>&copy; 2021 - {new Date().getFullYear()} | v2.0.0</small>
         </p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

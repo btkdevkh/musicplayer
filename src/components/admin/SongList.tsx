@@ -19,7 +19,7 @@ const SongList = ({ index, setIndex, isPlay, setIsPlay }: SongListProps) => {
             <tr>
               <td>Title</td>
               <td>Singer</td>
-              <td>Cover</td>
+              <td>CD Cover</td>
               <td colSpan={2}>Actions</td>
             </tr>
           </thead>
